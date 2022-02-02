@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.MineFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="我的" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/avatar"
+            android:layout_centerHorizontal="true"
+            android:text="xxxx"
+            android:textColor="@color/text_color_2"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="#eee" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/nickname"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:sLeftTextString="昵称:xxx" />
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/sex"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:sLeftTextString="性别:xxx" />
+
+
+    <com.allen.library.SuperTextView
+        android:id="@+id/updatePwd"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:sLeftTextString="修改密码" />
+
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_bg"
+        android:text="退出登录" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

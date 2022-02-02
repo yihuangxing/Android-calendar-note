@@ -2,16 +2,54 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.note">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidcalendarnote">
-        <activity android:name=".MainActivity"
-             android:exported="true"/>
-        <activity android:name=".activity.LoginActivity"
+        <activity
+            android:name=".activity.EditMoodActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.DialogActivity"
+            android:exported="true"
+            android:theme="@style/progress_dialog_theme" />
+        <activity
+            android:name=".activity.NoteActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MoodListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AddMoodActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MeetingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.UpdatePwdActivity"
+            android:exported="true" />
+        <activity
+            android:name=".IndexActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

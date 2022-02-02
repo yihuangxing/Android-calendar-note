@@ -33,7 +33,30 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+
+    implementation 'com.lzy.net:okgo:3.0.4'
+    implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc05'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'        //高斯模糊
+    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.lygttpod:SuperTextView:2.4.6'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+
+    implementation 'com.ashokvarma.android:bottom-navigation-bar:2.2.0'
+
+    implementation 'com.contrarywind:Android-PickerView:4.1.9'
+
+    implementation 'com.github.Othershe:CornerLabelView:1.0.0'
+
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+
+    implementation 'com.haibin:calendarview:3.7.1'
 }

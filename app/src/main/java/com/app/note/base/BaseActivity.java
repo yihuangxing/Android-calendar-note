@@ -6,15 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.app.note.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+
+
 public abstract class BaseActivity extends AppCompatActivity {
     private static boolean isMiUi = false;
+
+    protected Toolbar toolbar;
 
     protected void initWindow() {
 
@@ -31,8 +39,21 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initWindow();
         setContentView(getLayoutId());
+
+        toolbar = findViewById(R.id.toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+
         initView();
         initData();
+
+
     }
 
     /**
@@ -130,6 +151,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @SuppressLint("InlinedApi")
     protected void setStatusBarDarkMode() {
+
         int type = getStatusBarLightMode();
         if (type == 1) {
             setMIUIStatusBarDarkMode();
@@ -138,6 +160,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         } else if (type == 3) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
+    }
+
+
+    /**
+     * toast
+     */
+    protected void showToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
 }
