@@ -34,7 +34,10 @@ public class ApiConstants {
     public final static String QUERY_NEW_URL = BASE_URL + "/user/queryPush";
 
     //查询某一单独事件
-    public final static String QUERY_ONE_NEW_URL=BASE_URL+"/user/queryOnePush";
+    public final static String QUERY_ONE_NEW_URL = BASE_URL + "/user/queryOnePush";
+
+    //查询图文消息
+    public final static String QUERY_GRAPHIC_URL = BASE_URL + "/user/graphic";
 
 
     //日记上锁
@@ -50,4 +53,17 @@ public class ApiConstants {
 
     //修改日记
     public final static String EDIT_NOTE_URL = BASE_URL + "/user/editNote";
+
+    //收藏
+    public final static String COLL_URL = BASE_URL + "/user/coll";
+
+    //收藏列表
+    public final static String COLL_LIST_URL = BASE_URL + "/user/listColl";
+
+    //取消收藏
+    public final static String DEL_COLL_URL = BASE_URL + "/user/delColl";
+
+
+    //查询所有注册用户
+    public final static String QUERY_USER_LIST = BASE_URL + "/user/userList";
 }

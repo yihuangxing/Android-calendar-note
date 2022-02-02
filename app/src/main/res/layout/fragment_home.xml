@@ -160,7 +160,7 @@
                 app:group_height="42dp"
                 app:group_padding_left="16dp"
                 app:group_padding_right="16dp"
-                app:group_text_color="#555555"
+                app:group_text_color="#046cea"
                 app:group_text_size="14sp" />
 
         </com.haibin.calendarview.CalendarLayout>

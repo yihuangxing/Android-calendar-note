@@ -7,6 +7,7 @@
     android:paddingTop="8dp"
     android:paddingBottom="6dp"
     android:paddingLeft="16dp"
+    android:id="@+id/rootView"
     android:paddingRight="16dp">
 
     <ImageView

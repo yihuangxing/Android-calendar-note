@@ -8,6 +8,12 @@
         <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/et_bg.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/line_bg.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_admin_article_list.xml" value="0.17135416666666667" />
+        <entry key="app/src/main/res/layout/activity_admin_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_admin_main.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_admin_mood_list.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/layout/activity_admin_register.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_admin_user_list.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_dialog.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_edit_mood.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_index.xml" value="0.134375" />
@@ -19,6 +25,11 @@
         <entry key="app/src/main/res/layout/activity_note.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.22864583333333333" />
         <entry key="app/src/main/res/layout/activity_update_pwd.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/admin_item_list_article.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/admin_mood_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/admin_user_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/coll_item.xml" value="0.19114583333333332" />
+        <entry key="app/src/main/res/layout/fragment_collection.xml" value="0.19114583333333332" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_mine.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_list_article.xml" value="0.25" />

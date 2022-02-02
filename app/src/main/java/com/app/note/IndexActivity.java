@@ -83,6 +83,7 @@ public class IndexActivity extends BaseActivity implements BottomNavigationBar.O
                 fragmentTransaction.add(R.id.content, mCollectionFragment);
             } else {
                 fragmentTransaction.show(mCollectionFragment);
+                mCollectionFragment.refreshData();
             }
         } else if (position == 2) {
             if (mMineFragment == null) {

@@ -89,6 +89,8 @@ public class MoodListActivity extends BaseActivity {
                                 intent.putExtra("info", info);
                                 startActivityForResult(intent, 4000);
                             } else if (currentIndex == 1) {
+                                //收藏
+                                CollData(info);
 
                             } else if (currentIndex == 2) {
                                 Intent intent = new Intent(MoodListActivity.this, EditMoodActivity.class);
@@ -121,6 +123,8 @@ public class MoodListActivity extends BaseActivity {
 
         getHttpData();
     }
+
+
 
 
     private void getHttpData() {
@@ -156,6 +160,31 @@ public class MoodListActivity extends BaseActivity {
                     protected void onSuccess(String msg, String response) {
                         showToast(msg);
                         getHttpData();
+                    }
+
+                    @Override
+                    protected void onError(String response) {
+                        showToast(response);
+                    }
+                });
+    }
+
+    private void CollData(NewInfo info) {
+        OkGo.<String>get(ApiConstants.COLL_URL)
+                .params("uid", info.getUid())
+                .params("username", info.getUsername())
+                .params("year", info.getYear())
+                .params("month", info.getMonth())
+                .params("cur_day", info.getCur_day())
+                .params("create_time", info.getCreate_time())
+                .params("title", info.getTitle())
+                .params("content", info.getContent())
+                .params("img_url", info.getImg_url())
+
+                .execute(new HttpStringCallback(this) {
+                    @Override
+                    protected void onSuccess(String msg, String response) {
+                        showToast(msg);
                     }
 
                     @Override

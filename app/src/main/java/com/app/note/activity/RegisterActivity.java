@@ -73,6 +73,7 @@ public class RegisterActivity extends BaseActivity {
                 .params("password", password)
                 .params("sex", sex)
                 .params("nickname", "这个家伙很懒，什么都没有留下~~")
+                .params("register_type",0)
                 .execute(new HttpStringCallback(this) {
                     @Override
                     protected void onSuccess(String msg, String response) {

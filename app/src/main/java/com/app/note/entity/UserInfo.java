@@ -1,8 +1,6 @@
 package com.app.note.entity;
 
 
-
-
 public class UserInfo {
     private int uid;
     private String username;
@@ -12,6 +10,7 @@ public class UserInfo {
     private String nickname;
     private String sex;
     private String create_time; //注册时间
+    private int register_type;   //注册类型0==用户   2==管理员
 
     public int getUid() {
         return uid;
@@ -75,5 +74,13 @@ public class UserInfo {
 
     public void setCreate_time(String create_time) {
         this.create_time = create_time;
+    }
+
+    public int getRegister_type() {
+        return register_type;
+    }
+
+    public void setRegister_type(int register_type) {
+        this.register_type = register_type;
     }
 }

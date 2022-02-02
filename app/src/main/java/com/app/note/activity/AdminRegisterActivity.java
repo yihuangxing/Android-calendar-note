@@ -1,13 +1,12 @@
 package com.app.note.activity;
 
-import android.content.Intent;
+
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 
-import androidx.annotation.Nullable;
-
-import com.app.note.IndexActivity;
 import com.app.note.R;
 import com.app.note.api.ApiConstants;
 import com.app.note.base.BaseActivity;
@@ -16,35 +15,24 @@ import com.app.note.http.HttpStringCallback;
 import com.app.note.utils.GsonUtils;
 import com.lzy.okgo.OkGo;
 
-import java.net.Inet4Address;
-
-/**
- * 登录页面
- */
-public class LoginActivity extends BaseActivity {
+public class AdminRegisterActivity extends BaseActivity {
     private EditText username;
     private EditText password;
 
+    private RadioGroup radiogroup;
+    private String sex = "女";
+
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_admin_register;
     }
 
     @Override
     protected void initView() {
-
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-            }
-        });
-
-        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = username.getText().toString().trim();
@@ -54,42 +42,48 @@ public class LoginActivity extends BaseActivity {
                 } else if (TextUtils.isEmpty(pwd)) {
                     showToast("请输入密码");
                 } else {
-                    login(name, pwd);
+                    register(name,pwd,sex);
+                }
+            }
+        });
+        radiogroup = findViewById(R.id.radioGroup);
+        radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.man:
+                        sex = "男";
+                        break;
+                    case R.id.woman:
+                        sex = "女";
+                        break;
                 }
             }
         });
 
-        findViewById(R.id.adminLogin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
-                startActivityForResult(intent, 5000);
-            }
-        });
     }
 
     @Override
     protected void initData() {
         setStatusBarDarkMode();
-
     }
 
 
-    private void login(String username, String password) {
-        OkGo.<String>get(ApiConstants.LOGIN_URL)
+    private void register(String username, String password, String sex) {
+        OkGo.<String>get(ApiConstants.REGISTER_URL)
                 .params("username", username)
                 .params("password", password)
-                .params("register_type",0)
+                .params("sex", sex)
+                .params("nickname", "这个家伙很懒，什么都没有留下~~")
+                .params("register_type",1)
                 .execute(new HttpStringCallback(this) {
                     @Override
                     protected void onSuccess(String msg, String response) {
                         UserInfo userInfo = GsonUtils.parseJson(response, UserInfo.class);
-                        ApiConstants.setUserInfo(userInfo);
-                        showToast(msg);
-//                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        startActivity(new Intent(LoginActivity.this, IndexActivity.class));
-                        finish();
-
+                        if (userInfo != null) {
+                            showToast(msg);
+                            finish();
+                        }
                     }
 
                     @Override
@@ -97,13 +91,5 @@ public class LoginActivity extends BaseActivity {
                         showToast(response);
                     }
                 });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 5000) {
-            finish();
-        }
     }
 }

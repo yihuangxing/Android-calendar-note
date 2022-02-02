@@ -58,7 +58,7 @@ public class HomeFragment extends BaseFragment implements
     CalendarLayout mCalendarLayout;
     GroupRecyclerView mRecyclerView;
 
-    private int currentIndex=0;
+    private int currentIndex = 0;
     private int year;
     private int month;
     private int curDay;
@@ -66,10 +66,11 @@ public class HomeFragment extends BaseFragment implements
     private String calder_type = "会议";
 
     Map<String, Calendar> map = new HashMap<>();
-    private List<NewInfo> list1=new ArrayList<>();
-    private List<NewInfo> list2=new ArrayList<>();
+    private List<NewInfo> list1 = new ArrayList<>();
+    private List<NewInfo> list2 = new ArrayList<>();
 
-     private ArticleAdapter mArticleAdapter;
+    private ArticleAdapter mArticleAdapter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
@@ -107,14 +108,14 @@ public class HomeFragment extends BaseFragment implements
                             intent.putExtra("curDay", curDay);
                             intent.putExtra("calder_type", calder_type);
                             getActivity().startActivityForResult(intent, 2000);
-                        }else if (currentIndex==2){
+                        } else if (currentIndex == 2) {
                             Intent intent = new Intent(getActivity(), AddMoodActivity.class);
                             intent.putExtra("year", year);
                             intent.putExtra("month", month);
                             intent.putExtra("curDay", curDay);
                             intent.putExtra("calder_type", calder_type);
                             getActivity().startActivityForResult(intent, 2000);
-                        }else if (currentIndex==1){
+                        } else if (currentIndex == 1) {
                             Intent intent = new Intent(getActivity(), NoteActivity.class);
                             intent.putExtra("year", year);
                             intent.putExtra("month", month);
@@ -123,7 +124,8 @@ public class HomeFragment extends BaseFragment implements
                             getActivity().startActivityForResult(intent, 2000);
                         }
 
-                        currentIndex=0;
+                        currentIndex = 0;
+                        calder_type = items[0];
                     }
                 });
                 builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -191,8 +193,29 @@ public class HomeFragment extends BaseFragment implements
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, NewInfo>());
 
 
+        mArticleAdapter = new ArticleAdapter(getActivity());
+        mArticleAdapter.setArticleAdapterListener(new ArticleAdapter.ArticleAdapterListener() {
+            @Override
+            public void onItem(NewInfo newInfo) {
+               AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
+               builder.setTitle("确定要删除吗？");
+               builder.setMessage("删除后的数据将无法恢复");
+               builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                        del(newInfo.getUid());
+                   }
+               });
+               builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
 
-        mArticleAdapter =new ArticleAdapter(getActivity());
+                   }
+               });
+
+               builder.show();
+            }
+        });
         mRecyclerView.setAdapter(mArticleAdapter);
 
         getHttpData();
@@ -250,9 +273,6 @@ public class HomeFragment extends BaseFragment implements
     }
 
 
-
-
-
     private void getHttpData(String username) {
         OkGo.<String>get(ApiConstants.QUERY_NEW_URL)
                 .params("username", username)
@@ -269,10 +289,10 @@ public class HomeFragment extends BaseFragment implements
                                     list1.add(info);
                                     map.put(getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "会").toString(),
                                             getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "会"));
-                                }else if (info.getCalder_type().contains("说说")){
+                                } else if (info.getCalder_type().contains("说说")) {
                                     map.put(getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "心").toString(),
                                             getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "心"));
-                                }else if (info.getCalder_type().contains("请假")){
+                                } else if (info.getCalder_type().contains("请假")) {
                                     list2.add(info);
                                     map.put(getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "假").toString(),
                                             getSchemeCalendar(info.getYear(), info.getMonth(), info.getCur_day(), "#ff0000", "假"));
@@ -282,8 +302,8 @@ public class HomeFragment extends BaseFragment implements
                                 mCalendarView.setSchemeDate(map);
                             }
 
-                            if (null!=mArticleAdapter){
-                                mArticleAdapter.setData(list1,list2);
+                            if (null != mArticleAdapter) {
+                                mArticleAdapter.setData(list1, list2);
                                 mArticleAdapter.resetGroups();
                                 mRecyclerView.notifyDataSetChanged();
                             }
@@ -299,8 +319,27 @@ public class HomeFragment extends BaseFragment implements
     }
 
 
-    public void refreshData(){
+    public void refreshData() {
         getHttpData();
+    }
+
+    private void del(int uid){
+        OkGo.<String>get(ApiConstants.DEL_URL)
+                .params("uid", uid)
+                .execute(new HttpStringCallback(getActivity()) {
+                    @Override
+                    protected void onSuccess(String msg, String response) {
+                        showToast(msg);
+                        getHttpData();
+                    }
+
+                    @Override
+                    protected void onError(String response) {
+                        showToast(response);
+                    }
+                });
+
+
     }
 }
 

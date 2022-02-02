@@ -4,19 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".activity.AdminUserListActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:navigationIcon="@mipmap/back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="收藏" />
-
+        app:title="注册用户"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/admin_user_list_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/coll_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_height="wrap_content"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

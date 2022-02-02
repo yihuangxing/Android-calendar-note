@@ -23,7 +23,7 @@ import java.util.List;
  * 适配器
  */
 
-public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
+public class AdminArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
 
     private RequestManager mLoader;
     LinkedHashMap<String, List<NewInfo>> map = new LinkedHashMap<>();
@@ -33,7 +33,7 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
     private List<NewInfo> list2 = new ArrayList<>();
 
 
-    public ArticleAdapter(Context context, List<NewInfo> list1, List<NewInfo> list2) {
+    public AdminArticleAdapter(Context context, List<NewInfo> list1, List<NewInfo> list2) {
         super(context);
         mLoader = Glide.with(context.getApplicationContext());
         map.put("最近会议", list1);
@@ -44,7 +44,7 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
     }
 
 
-    public ArticleAdapter(Context context) {
+    public AdminArticleAdapter(Context context) {
         super(context);
         mLoader = Glide.with(context.getApplicationContext());
     }
@@ -56,33 +56,36 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
     }
 
     public void resetGroups() {
-        map.put("最近会议", list1);
-        map.put("最近请假", list2);
-        titles.add("最近会议");
-        titles.add("最近请假");
+        map.put("会议记录", list1);
+        map.put("请假记录", list2);
+        titles.add("会议记录");
+        titles.add("请假记录");
         resetGroups(map, titles);
     }
 
 
     @Override
     protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        return new ArticleViewHolder(mInflater.inflate(R.layout.item_list_article, parent, false));
+        return new ArticleViewHolder(mInflater.inflate(R.layout.admin_item_list_article, parent, false));
     }
 
     @Override
     protected void onBindViewHolder(RecyclerView.ViewHolder holder, NewInfo item, int position) {
         ArticleViewHolder h = (ArticleViewHolder) holder;
-        h.mTextContent.setText(item.getContent());
+
         if (item.getCalder_type().equals("请假")) {
             h.mImageView.setImageResource(R.mipmap.img_14);
             h.mTextTitle.setText(item.getCreate_time() + "到" + item.getTitle() + "结束");
             h.mTimepicker.setVisibility(View.GONE);
+            h.mTextContent.setText("原因：" + item.getContent());
         } else {
             h.mImageView.setImageResource(R.mipmap.img_13);
-            h.mTextTitle.setText(item.getTitle());
+            h.mTextTitle.setText("会议主题：" + item.getTitle());
             h.mTimepicker.setText("会议时间：" + item.getCreate_time());
+            h.mTextContent.setText("会议摘要：" + item.getContent());
             h.mTimepicker.setVisibility(View.VISIBLE);
         }
+        h.create_name.setText("创建人："+item.getUsername());
 
         //点击事件
         h.rootView.setOnLongClickListener(new View.OnLongClickListener() {
@@ -98,7 +101,7 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
     }
 
     private static class ArticleViewHolder extends RecyclerView.ViewHolder {
-        private TextView mTextTitle, mTextContent, mTimepicker;
+        private TextView mTextTitle, mTextContent, mTimepicker,create_name;
         private ImageView mImageView;
         private RelativeLayout rootView;
 
@@ -109,6 +112,7 @@ public class ArticleAdapter extends GroupRecyclerAdapter<String, NewInfo> {
             mImageView = itemView.findViewById(R.id.imageView);
             mTimepicker = itemView.findViewById(R.id.timepicker);
             rootView = itemView.findViewById(R.id.rootView);
+            create_name =itemView.findViewById(R.id.create_name);
 
         }
     }

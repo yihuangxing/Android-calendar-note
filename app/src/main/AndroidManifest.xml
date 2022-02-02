@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidcalendarnote">
+        <activity
+            android:name=".activity.AdminArticleListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminUserListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminMoodListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminMainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminRegisterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AdminLoginActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.EditMoodActivity"
             android:exported="true" />

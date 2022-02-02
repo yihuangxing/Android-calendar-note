@@ -1,12 +1,8 @@
 package com.app.note.activity;
-
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-
-import androidx.annotation.Nullable;
-
 import com.app.note.IndexActivity;
 import com.app.note.R;
 import com.app.note.api.ApiConstants;
@@ -16,23 +12,18 @@ import com.app.note.http.HttpStringCallback;
 import com.app.note.utils.GsonUtils;
 import com.lzy.okgo.OkGo;
 
-import java.net.Inet4Address;
-
-/**
- * 登录页面
- */
-public class LoginActivity extends BaseActivity {
+public class AdminLoginActivity extends BaseActivity {
     private EditText username;
     private EditText password;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_login;
+        return R.layout.activity_admin_login;
     }
 
     @Override
     protected void initView() {
-
+        setStatusBarDarkMode();
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
@@ -40,7 +31,7 @@ public class LoginActivity extends BaseActivity {
         findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(AdminLoginActivity.this, AdminRegisterActivity.class));
             }
         });
 
@@ -59,18 +50,11 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.adminLogin).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
-                startActivityForResult(intent, 5000);
-            }
-        });
     }
 
     @Override
     protected void initData() {
-        setStatusBarDarkMode();
+
 
     }
 
@@ -79,15 +63,14 @@ public class LoginActivity extends BaseActivity {
         OkGo.<String>get(ApiConstants.LOGIN_URL)
                 .params("username", username)
                 .params("password", password)
-                .params("register_type",0)
+                .params("register_type",1)
                 .execute(new HttpStringCallback(this) {
                     @Override
                     protected void onSuccess(String msg, String response) {
                         UserInfo userInfo = GsonUtils.parseJson(response, UserInfo.class);
                         ApiConstants.setUserInfo(userInfo);
                         showToast(msg);
-//                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        startActivity(new Intent(LoginActivity.this, IndexActivity.class));
+                        startActivity(new Intent(AdminLoginActivity.this, AdminMainActivity.class));
                         finish();
 
                     }
@@ -97,13 +80,5 @@ public class LoginActivity extends BaseActivity {
                         showToast(response);
                     }
                 });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 5000) {
-            finish();
-        }
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    tools:context=".activity.AdminArticleListActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@mipmap/back"
+        app:title="统计事件"/>
+
+
+    <com.app.note.view.GroupRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:group_background="#eee"
+        app:group_center="false"
+        app:group_has_header="false"
+        app:group_height="42dp"
+        app:group_padding_left="16dp"
+        app:group_padding_right="16dp"
+        app:group_text_color="#046cea"
+        app:group_text_size="14sp" />
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
