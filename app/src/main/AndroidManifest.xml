@@ -18,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Androidcalendarnote">
         <activity
+            android:name=".activity.AdminArticleNameActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MoodListNameNextActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.MoodListNameActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.AdminArticleListActivity"
             android:exported="true" />
         <activity

@@ -1,6 +1,7 @@
 package com.app.note.activity;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.app.note.R;
 import com.app.note.adapter.AdminArticleAdapter;
 import com.app.note.api.ApiConstants;
@@ -24,12 +25,14 @@ import java.util.Map;
  *
  */
 public class AdminArticleListActivity extends BaseActivity {
-     private GroupRecyclerView recyclerView;
+    private GroupRecyclerView recyclerView;
 
     private AdminArticleAdapter mArticleAdapter;
 
     private List<NewInfo> list1 = new ArrayList<>();
     private List<NewInfo> list2 = new ArrayList<>();
+
+    private String username;
 
 
     @Override
@@ -40,7 +43,7 @@ public class AdminArticleListActivity extends BaseActivity {
     @Override
     protected void initView() {
         setStatusBarDarkMode();
-        recyclerView =findViewById(R.id.recyclerView);
+        recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new GroupItemDecoration<String, NewInfo>());
@@ -53,11 +56,13 @@ public class AdminArticleListActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        username = getIntent().getStringExtra("username");
         getHttpData();
     }
 
     private void getHttpData() {
         OkGo.<String>get(ApiConstants.QUERY_NEW_URL)
+                .params("username", username)
                 .execute(new HttpStringCallback(this) {
                     @Override
                     protected void onSuccess(String msg, String response) {
@@ -69,7 +74,7 @@ public class AdminArticleListActivity extends BaseActivity {
                                 NewInfo info = newListInfo.getInfoList().get(i);
                                 if (info.getCalder_type().contains("会议")) {
                                     list1.add(info);
-                                }  else if (info.getCalder_type().contains("请假")) {
+                                } else if (info.getCalder_type().contains("请假")) {
                                     list2.add(info);
                                 }
                             }

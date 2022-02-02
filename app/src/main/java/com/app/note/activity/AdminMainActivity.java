@@ -23,7 +23,8 @@ public class AdminMainActivity extends BaseActivity {
         findViewById(R.id.float2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminMainActivity.this, AdminMoodListActivity.class));
+//                startActivity(new Intent(AdminMainActivity.this, AdminMoodListActivity.class));
+                startActivity(new Intent(AdminMainActivity.this,MoodListNameActivity.class));
             }
         });
 
@@ -62,7 +63,8 @@ public class AdminMainActivity extends BaseActivity {
         findViewById(R.id.float1).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(AdminMainActivity.this, AdminArticleListActivity.class));
+//                startActivity(new Intent(AdminMainActivity.this, AdminArticleListActivity.class));
+                startActivity(new Intent(AdminMainActivity.this, AdminArticleNameActivity.class));
             }
         });
 

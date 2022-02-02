@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
+                android:text="admin"
                 android:hint="请输入管理员账号"
                 android:textColor="@color/text_color_2"
                 android:textSize="15sp" />
@@ -79,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
+                android:text="123456"
                 android:hint="请输入管理员密码"
                 android:inputType="textPassword"
                 android:textColor="@color/text_color_2"
