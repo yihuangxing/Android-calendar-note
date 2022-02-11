@@ -43,6 +43,7 @@ import java.util.Map;
 public class HomeFragment extends BaseFragment implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnYearChangeListener {
+
     TextView mTextMonthDay;
 
     TextView mTextYear;

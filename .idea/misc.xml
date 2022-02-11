@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../.gradle/caches/transforms-2/files-2.1/7e55de1d709641138188215bf9f999e4/pictureselector-v2.7.3-rc05/res/drawable/picture_image_placeholder.xml" value="0.1171875" />
+        <entry key="..\:/AndroidProject/Android-calendar-note/app/src/main/res/drawable/bg_ripple.xml" value="0.29583333333333334" />
+        <entry key="..\:/AndroidProject/Android-calendar-note/app/src/main/res/layout/fragment_home.xml" value="0.2796875" />
         <entry key="app/src/main/res/drawable/bg_ripple.xml" value="0.12395833333333334" />
         <entry key="app/src/main/res/drawable/btn_bg.xml" value="0.24479166666666666" />
         <entry key="app/src/main/res/drawable/et_bg.xml" value="0.24479166666666666" />
