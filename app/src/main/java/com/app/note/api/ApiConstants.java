@@ -4,8 +4,8 @@ import com.app.note.entity.UserInfo;
 
 public class ApiConstants {
 
-            public final static String BASE_URL = "http://192.168.14.13:8080";
-//    public final static String BASE_URL = "http://192.168.2.108:8080";
+//            public final static String BASE_URL = "http://192.168.14.13:8080";
+    public final static String BASE_URL = "http://192.168.2.101:8080";
 
     public static UserInfo sUserInfo;
 
