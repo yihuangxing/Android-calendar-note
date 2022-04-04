@@ -1,8 +1,16 @@
 package com.app.note.base;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -16,10 +24,13 @@ import com.app.note.R;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class BaseActivity extends AppCompatActivity {
+
+
     private static boolean isMiUi = false;
 
     protected Toolbar toolbar;
@@ -52,7 +63,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         initView();
         initData();
-
 
     }
 
@@ -161,6 +171,9 @@ public abstract class BaseActivity extends AppCompatActivity {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
     }
+
+
+
 
 
     /**

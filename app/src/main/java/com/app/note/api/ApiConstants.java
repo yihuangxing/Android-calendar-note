@@ -3,9 +3,9 @@ package com.app.note.api;
 import com.app.note.entity.UserInfo;
 
 public class ApiConstants {
-
-//            public final static String BASE_URL = "http://192.168.14.13:8080";
-    public final static String BASE_URL = "http://192.168.2.101:8080";
+    //  public final static String BASE_URL = "http://192.168.14.13:8080";
+    //  public final static String BASE_URL = "http://192.168.31.155:8080";
+    public final static String BASE_URL = "http://192.168.2.103:8080";
 
     public static UserInfo sUserInfo;
 
@@ -66,4 +66,14 @@ public class ApiConstants {
 
     //查询所有注册用户
     public final static String QUERY_USER_LIST = BASE_URL + "/user/userList";
+
+
+    //添加地图笔记
+    public final static String ADD_MAP_NOTE_URL = BASE_URL + "/user/addMapNote";
+
+    //查找地图笔记
+    public final static String QUERY_MAP_NOTE_URL = BASE_URL + "/user/queryMapNote";
+
+    //删除地图笔记
+    public final static String DEL_MAP_NOTE_URL = BASE_URL + "/user/delMapNote";
 }

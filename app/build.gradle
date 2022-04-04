@@ -3,6 +3,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('./keystore')
+            storePassword '123456'
+            keyAlias 'android'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('./keystore')
+            storePassword '123456'
+            keyAlias 'android'
+            keyPassword '123456'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion '30.0.3'
 
@@ -20,11 +34,22 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
     }
 
 
@@ -36,6 +61,9 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation files('libs/AMap_Location_V6.0.1_20220315.jar')
+    implementation files('libs/Android_Map3D_SDK_V9.1.0_20220210.jar')
+    implementation files('libs/AMap_Search_V8.1.0_20211029.jar')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -51,14 +79,9 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.lygttpod:SuperTextView:2.4.6'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.2.0'
-
     implementation 'com.contrarywind:Android-PickerView:4.1.9'
-
     implementation 'com.github.Othershe:CornerLabelView:1.0.0'
-
     implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
-
     implementation 'com.haibin:calendarview:3.7.1'
 }
